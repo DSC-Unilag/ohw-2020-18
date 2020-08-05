@@ -17,10 +17,26 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 =======
 Team Members
+
+
+
+
 Ogundipe Michael
+
+
+
+
 Olumide Nwosu
+
+
+
 Christopher Nwosu-Madueke
+
+
+
 Nusaybah Fuad-Gafar
+
+
 
 
 
