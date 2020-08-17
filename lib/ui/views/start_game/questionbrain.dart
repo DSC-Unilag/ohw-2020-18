@@ -24,7 +24,7 @@ class TeenTruthBrain {
   List<Question> get getTeenTruthBank => teenTruthBank;
 
   void nextQuestion() async {
-    await Future.delayed(Duration(microseconds: 200));
+    await Future.delayed(Duration(microseconds: 500));
     if (_questionNumber < teenTruthBank.length - 1) {
       _questionNumber++;
     }
@@ -48,7 +48,7 @@ class TeenTruthBrain {
   }
 
   Future<int> reset() async{
-    await Future.delayed(Duration(microseconds: 100));
+    await Future.delayed(Duration(microseconds: 500));
     return _questionNumber = 0;
   }
 }
@@ -74,7 +74,7 @@ class TeenDareBrain {
   List<Question> get getTeenDareBank => teenDareBank;
 
   void nextQuestion() async {
-    await Future.delayed(Duration(microseconds: 200));
+    await Future.delayed(Duration(microseconds: 500));
     if (_questionNumber < teenDareBank.length - 1) {
       _questionNumber++;
     }
@@ -98,7 +98,7 @@ class TeenDareBrain {
   }
 
   Future<int> reset() async {
-    await Future.delayed(Duration(microseconds: 100));
+    await Future.delayed(Duration(microseconds: 500));
     return _questionNumber = 0;
   }
 }
@@ -124,7 +124,7 @@ class AdultTruthBrain {
   List<Question> get getAdultTruthBank => adultTruthBank;
 
   Future<void> nextQuestion() async {
-    await Future.delayed(Duration(microseconds: 200));
+    await Future.delayed(Duration(microseconds: 500));
     if (_questionNumber < adultTruthBank.length - 1) {
       _questionNumber++;
     }
@@ -148,7 +148,7 @@ class AdultTruthBrain {
   }
 
   Future<int> reset() async {
-    await Future.delayed(Duration(microseconds: 100));
+    await Future.delayed(Duration(microseconds: 500));
     return _questionNumber = 0;
   }
 }
@@ -176,7 +176,7 @@ class AdultDareBrain {
   List<Question> get getAdultDareBank => adultDareBank;
 
   Future<void> nextQuestion() async {
-    await Future.delayed(Duration(microseconds: 200));
+    await Future.delayed(Duration(microseconds: 500));
     if (_questionNumber < adultDareBank.length - 1) {
       _questionNumber++;
     }
@@ -200,7 +200,7 @@ class AdultDareBrain {
   }
 
   Future<int> reset() async {
-    await Future.delayed(Duration(microseconds: 100));
+    await Future.delayed(Duration(microseconds: 500));
     return _questionNumber = 0;
   }
 }
