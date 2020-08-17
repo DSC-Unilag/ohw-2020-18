@@ -96,11 +96,13 @@ class _AddTruthState extends State<AddTruth> {
                                   });
                                 }
                               }
+                              print(_teenTruthBank);
                               // print(qb.AdultTruthBrain().getAdultTruthBank);
                               // print('next');
                               // print('\n\n\n');
                               controller.clear();
                               truth = null;
+                              FocusScope.of(context).nextFocus();
                               // print(_adultTruthBank);
                             },
                             child: Text(
@@ -147,7 +149,7 @@ class _AddTruthState extends State<AddTruth> {
                               ))
                             : Padding(
                                 padding:
-                                    const EdgeInsets.fromLTRB(8.0, 18, 8, 18),
+                                    const EdgeInsets.fromLTRB(8.0, 0, 8, 18),
                                 child: ListView(
                                   children: <Widget>[
                                     for (int i = 10;

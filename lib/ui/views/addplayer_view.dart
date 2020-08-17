@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truthordare/ui/shared/main_button.dart';
 import 'package:truthordare/ui/views/start_game/start_game.dart';
 
-  List<String> players = [];
+List<String> players = [];
 
 class AddPlayer extends StatefulWidget {
   @override
@@ -11,6 +11,7 @@ class AddPlayer extends StatefulWidget {
 }
 
 class _AddPlayerState extends State<AddPlayer> {
+  ScrollController _controller = ScrollController();
   TextEditingController _textEditingController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String _name;
@@ -34,7 +35,7 @@ class _AddPlayerState extends State<AddPlayer> {
             Text(
               'Add Player',
               style: TextStyle(
-                fontFamily:'DancingScript',
+                fontFamily: 'DancingScript',
                 fontSize: 90.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -89,7 +90,8 @@ class _AddPlayerState extends State<AddPlayer> {
                         height: 54,
                         child: RaisedButton(
                           onPressed: () {
-                            if (_formKey.currentState.validate() && _name != null &&
+                            if (_formKey.currentState.validate() &&
+                                _name != null &&
                                 _name.trim().isNotEmpty) {
                               setState(() => players.add(_name));
                               _textEditingController.clear();
@@ -112,6 +114,7 @@ class _AddPlayerState extends State<AddPlayer> {
             ),
             Expanded(
               child: ListView.builder(
+                controller: _controller,
                 itemCount: players.length,
                 itemBuilder: (context, index) {
                   return Container(
@@ -145,21 +148,23 @@ class _AddPlayerState extends State<AddPlayer> {
               child: FlatButton(
                 color: Colors.deepPurple[900],
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(50.0,10.0,50.0,10.0),
-                  child: Text('START',
+                  padding: EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 10.0),
+                  child: Text(
+                    'START',
                     style: TextStyle(
                       fontFamily: 'NanumMyeongjo',
                       fontSize: 35.0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                    ),),
+                    ),
+                  ),
                 ),
                 shape: BeveledRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
-                  if (players.isNotEmpty){
+                  if (players.isNotEmpty) {
                     Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => StartGame()));
+                        MaterialPageRoute(builder: (context) => StartGame()));
                   }
                   // TODO: Implement kids button
                 },

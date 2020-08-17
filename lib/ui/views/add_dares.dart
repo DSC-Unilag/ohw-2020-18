@@ -64,6 +64,9 @@ class _AddDareState extends State<AddDare> {
                             dare = val;
                           });
                         },
+                        onEditingComplete: () {
+                          FocusScope.of(context).nextFocus();
+                        },
                         decoration: InputDecoration(
                             hintText: 'Enter your question here',
                             filled: true,
@@ -102,7 +105,8 @@ class _AddDareState extends State<AddDare> {
                               }
                               controller.clear();
                               dare = null;
-                              print(dare);
+                              FocusScope.of(context).nextFocus();
+                              // print(dare);
                             },
                             child: Text(
                               'ADD Dare',
@@ -124,86 +128,88 @@ class _AddDareState extends State<AddDare> {
                   ],
                 ),
                 SizedBox(height: 18),
-                Container(
-                  // height: 250,
-                  // width: 300,
-                  decoration: BoxDecoration(
-                      color: Color(0xFFCCCCCC),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colors.black, width: 2)),
-                  child: widget.isTeen
-                      ? _teenDareBank.length <= 10
-                          ? Center(
-                              child: Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(10, 100, 10, 100),
-                              child: Text(
-                                'No Questions Added yet',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    letterSpacing: 2,
-                                    color: Color(0xFF6A6A6A)),
+                Expanded(
+                  child: Container(
+                    // height: 250,
+                    // width: 300,
+                    decoration: BoxDecoration(
+                        color: Color(0xFFCCCCCC),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.black, width: 2)),
+                    child: widget.isTeen
+                        ? _teenDareBank.length <= 10
+                            ? Center(
+                                child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 100, 10, 100),
+                                child: Text(
+                                  'No Questions Added yet',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      letterSpacing: 2,
+                                      color: Color(0xFF6A6A6A)),
+                                ),
+                              ))
+                            : Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(8.0, 0, 8, 18),
+                                child: ListView(
+                                  children: <Widget>[
+                                    for (int i = 10;
+                                        i < _teenDareBank.length;
+                                        i++)
+                                      ListTile(
+                                        title:
+                                            Text(_teenDareBank[i].questionText),
+                                        trailing: IconButton(
+                                          icon: Icon(Icons.cancel),
+                                          onPressed: () {
+                                            setState(() {
+                                              qb.teenDareBank.removeAt(i);
+                                            });
+                                          },
+                                        ),
+                                      )
+                                  ],
+                                ),
+                              )
+                        : _adultDareBank.length <= 10
+                            ? Center(
+                                child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 100, 10, 100),
+                                child: Text(
+                                  'No Questions Added yet',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      letterSpacing: 2,
+                                      color: Color(0xFF6A6A6A)),
+                                ),
+                              ))
+                            : Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(8.0, 18, 8, 18),
+                                child: Column(
+                                  children: <Widget>[
+                                    for (int i = 10;
+                                        i < _adultDareBank.length;
+                                        i++)
+                                      ListTile(
+                                        title: Text(
+                                            _adultDareBank[i].questionText),
+                                        trailing: IconButton(
+                                          icon: Icon(Icons.cancel),
+                                          onPressed: () {
+                                            setState(() {
+                                              qb.adultDareBank.removeAt(i);
+                                            });
+                                          },
+                                        ),
+                                      )
+                                  ],
+                                ),
                               ),
-                            ))
-                          : Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(8.0, 18, 8, 18),
-                              child: ListView(
-                                children: <Widget>[
-                                  for (int i = 10;
-                                      i < _teenDareBank.length;
-                                      i++)
-                                    ListTile(
-                                      title:
-                                          Text(_teenDareBank[i].questionText),
-                                      trailing: IconButton(
-                                        icon: Icon(Icons.cancel),
-                                        onPressed: () {
-                                          setState(() {
-                                            qb.teenDareBank.removeAt(i);
-                                          });
-                                        },
-                                      ),
-                                    )
-                                ],
-                              ),
-                            )
-                      : _adultDareBank.length <= 10
-                          ? Center(
-                              child: Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(10, 100, 10, 100),
-                              child: Text(
-                                'No Questions Added yet',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    letterSpacing: 2,
-                                    color: Color(0xFF6A6A6A)),
-                              ),
-                            ))
-                          : Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(8.0, 18, 8, 18),
-                              child: Column(
-                                children: <Widget>[
-                                  for (int i = 10;
-                                      i < _adultDareBank.length;
-                                      i++)
-                                    ListTile(
-                                      title:
-                                          Text(_adultDareBank[i].questionText),
-                                      trailing: IconButton(
-                                        icon: Icon(Icons.cancel),
-                                        onPressed: () {
-                                          setState(() {
-                                            qb.adultDareBank.removeAt(i);
-                                          });
-                                        },
-                                      ),
-                                    )
-                                ],
-                              ),
-                            ),
+                  ),
                 ),
                 SizedBox(height: 20),
                 FlatButton(
